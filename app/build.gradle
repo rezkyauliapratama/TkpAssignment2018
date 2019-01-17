@@ -1,0 +1,107 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    defaultConfig {
+        applicationId "android.rezkyauliapratama.com.tokopediaassigmentnov2018"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "BASE_URL", "\"https://newsapi.org/\""
+        buildConfigField "String", "API_KEY", "\"6b860b0672424c43856c4e51caf62026\""
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(path: ':beauty-view')
+
+    //kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.core:core-ktx:$rootProject.ktxVersion"
+    implementation "org.jetbrains.anko:anko:$rootProject.ankoVersion"
+
+
+    //support
+    implementation "androidx.appcompat:appcompat:$rootProject.supportVersion"
+    implementation "com.google.android.material:material:$rootProject.supportVersion"
+    implementation "androidx.cardview:cardview:$rootProject.supportVersion"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$rootProject.supportVersion"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.supportVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
+
+    //db
+    implementation "android.arch.persistence.room:runtime:$rootProject.archVersion"
+    implementation "android.arch.persistence.room:rxjava2:$rootProject.archVersion"
+    kapt "android.arch.persistence.room:compiler:$rootProject.archVersion"
+
+    //image-handling
+    implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
+
+    //animation
+    implementation "com.airbnb.android:lottie:$rootProject.lottieVersion"
+
+    //dagger2
+    implementation "com.google.dagger:dagger:$rootProject.dagger2Version"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+
+    // dagger android
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger2Version"
+    implementation "com.google.dagger:dagger-android:$rootProject.dagger2Version"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger2Version"
+
+    //rx
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+    implementation "com.jakewharton.rxrelay2:rxrelay:$rootProject.rxRelayVersion"
+
+    //architecture component
+    implementation "android.arch.lifecycle:extensions:$rootProject.arcCompVersion"
+
+    //networking
+    implementation "com.rezkyaulia.library:light-networking:0.1"
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+
+    //log
+    implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
+
+    //testing
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation "androidx.test:runner:$rootProject.testRunnerVersion"
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.leakCannaryVersion"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.leakCannaryVersion"
+    // Optional, if you use support library fragments:
+    debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:$rootProject.leakCannaryVersion"
+}
